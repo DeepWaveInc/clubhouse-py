@@ -1,8 +1,6 @@
 """
 cli.py
-
 Sample CLI Clubhouse Client
-
 RTC: For voice communication
 """
 
@@ -34,7 +32,6 @@ except ImportError:
 
 def set_interval(interval):
     """ (int) -> decorator
-
     set_interval decorator
     """
     def decorator(func):
@@ -54,7 +51,6 @@ def set_interval(interval):
 
 def write_config(user_id, user_token, user_device, filename='setting.ini'):
     """ (str, str, str, str) -> bool
-
     Write Config. return True on successful file write
     """
     config = configparser.ConfigParser()
@@ -69,7 +65,6 @@ def write_config(user_id, user_token, user_device, filename='setting.ini'):
 
 def read_config(filename='setting.ini'):
     """ (str) -> dict of str
-
     Read Config
     """
     config = configparser.ConfigParser()
@@ -80,7 +75,6 @@ def read_config(filename='setting.ini'):
 
 def process_onboarding(client):
     """ (Clubhouse) -> NoneType
-
     This is to process the initial setup for the first time user.
     """
     print("=" * 30)
@@ -132,7 +126,6 @@ def process_onboarding(client):
 
 def print_channel_list(client, max_limit=20):
     """ (Clubhouse) -> NoneType
-
     Print list of channels
     """
     # Get channels and print out
@@ -160,17 +153,15 @@ def print_channel_list(client, max_limit=20):
 
 def chat_main(client):
     """ (Clubhouse) -> NoneType
-
     Main function for chat
     """
-    max_limit = 20
+    max_limit = 100
     channel_speaker_permission = False
     _wait_func = None
     _ping_func = None
 
     def _request_speaker_permission(client, channel_name, user_id):
         """ (str) -> bool
-
         Raise hands for permissions
         """
         if not channel_speaker_permission:
@@ -181,7 +172,6 @@ def chat_main(client):
     @set_interval(30)
     def _ping_keep_alive(client, channel_name):
         """ (str) -> bool
-
         Continue to ping alive every 30 seconds.
         """
         client.active_ping(channel_name)
@@ -190,7 +180,6 @@ def chat_main(client):
     @set_interval(10)
     def _wait_speaker_permission(client, channel_name, user_id):
         """ (str) -> bool
-
         Function that runs when you've requested for a voice permission.
         """
         # Get some random users from the channel.
@@ -254,6 +243,7 @@ def chat_main(client):
         if RTC:
             token = channel_info['token']
             RTC.joinChannel(token, channel_name, "", int(user_id))
+            RTC.startAudioRecording ("%s.mp3"%channel_name, 32)
         else:
             print("[!] Agora SDK is not installed.")
             print("    You may not speak or listen to the conversation.")
@@ -293,7 +283,6 @@ def chat_main(client):
 
 def user_authentication(client):
     """ (Clubhouse) -> NoneType
-
     Just for authenticating the user.
     """
 
