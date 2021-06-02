@@ -118,11 +118,18 @@ After login, it would get a list about the channel.
 1. Install the prebuild pyaudio from the forked repo.
   - [prebuild pyaudio](https://github.com/intxcc/pyaudio_portaudio/releases/download/1.1.1/PyAudio-0.2.11-cp37-cp37m-win_amd64.whl)
 
-How to install?
+How to install the dependencies?
 ```
 $pip install PyAudio-0.2.11-cp37-cp37m-win_amd64.whl
 ```
 2. Activate the sample code of the repo after run the clubhouse cli.py
+
+After running the clubhouse/cli.py, we run this ```record.py``` to 
+record the Audio output of the Windows System.
+
+```
+$python record.py
+```
 
 The sample code of the repo is a script to choose record which system audio channel.
 
